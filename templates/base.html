@@ -5,14 +5,31 @@
     <title>{{PAGE_TITLE}}</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
-    <nav class="navbar">
-        <a href="/">Prog. 2 Sample</a>
-        <a href="/2X">Prog. 2X</a>
-    </nav>
 
-    <main>
-        {{PAGE_CONTENT}}
-    </main>
+<body>
+
+<header class="top-bar">
+
+    <div class="logo">
+        RoadSafe VIC
+    </div>
+
+    <div class="search-bar">
+    <input
+        type="text"
+        placeholder="Search road safety topics..."
+    >
+    </div>
+
+    <div class="options-btn">
+        Options
+    </div>
+
+</header>
+
+<main>
+    {{PAGE_CONTENT}}
+</main>
+
 </body>
 </html>
