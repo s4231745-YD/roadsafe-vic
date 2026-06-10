@@ -39,7 +39,8 @@ main {
 
 .logo {
     font-weight: bold;
-    font-size: 22px;
+    font-size: 17px;
+    white-space: nowrap;
 }
 
 .search-bar {
@@ -62,6 +63,7 @@ main {
     outline: none;
     text-align: center;
     font-size: 16px;
+    padding: 0;
 }
 
 /* SECTIONS */
@@ -187,4 +189,165 @@ tbody tr:hover {
     color: #777;
 
     font-size: 13px;
+}
+
+.filter-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    max-width: none;
+}
+
+.filter-form select,
+.filter-form input {
+    padding: 10px;
+}
+
+.kpi-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.kpi-card {
+    flex: 1;
+    background: white;
+    border: 1px solid #d8d8d8;
+    border-radius: 12px;
+    text-align: center;
+    padding: 20px;
+}
+
+.kpi-card h3 {
+    font-size: 32px;
+    margin: 0;
+}
+
+.chart-row {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.chart-box {
+    flex: 1;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.bar {
+    width: 100%;
+    height: 20px;
+    background: #eee;
+    margin-bottom: 10px;
+}
+
+.bar-fill {
+    height: 100%;
+}
+
+.serious {
+    width: 80%;
+    background: #4a6fa5;
+}
+
+.other {
+    width: 60%;
+    background: #7da0d6;
+}
+
+.pie-placeholder {
+    text-align: center;
+    font-size: 18px;
+    padding: 40px;
+}
+
+.nav-button {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+th {
+    background: #f4f4f4;
+}
+
+tbody tr:hover {
+    background: #f9f9f9;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-link:hover .card {
+    transform: translateY(-4px);
+    transition: 0.2s;
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+    transition: 0.2s;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.filter-help {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.filter-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-help {
+    margin-bottom: 20px;
+    color: #555;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.table-note {
+    color: #666;
+    margin-bottom: 12px;
+    font-style: italic;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.summary-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+button {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.chart-note{
+    margin-bottom:20px;
+    color:#666;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
 }

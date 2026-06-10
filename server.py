@@ -20,9 +20,21 @@ class RequestHandler(BaseHTTPRequestHandler):
         path = parsed_path.path
 
         if path == "/":
-            self.handle_simple_page("About", "templates/2_sample.html")
+            self.handle_simple_page(
+                "Landing Page",
+                "templates/2_sample.html"
+            )
+        elif path == "/summary":
+            self.handle_summary_page(
+                "People & Injuries Summary",
+                "templates/summary.html",
+                parsed_path
+            )
         elif path == "/2X":
-            self.handle_simple_page("2X Page", "templates/2_X.html")
+            self.handle_simple_page(
+                "2X Page",
+                "templates/2_X.html"
+            )
         elif path.startswith("/static/"):
             self.handle_static(path)
         else:
@@ -153,6 +165,192 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.send_header("Content-type", "text/html; charset=utf-8")
         self.end_headers()
         self.wfile.write(full_html.encode("utf-8"))
+
+    def handle_summary_page(
+        self,
+        title,
+        template_path,
+        parsed_path
+    ):
+
+        query_params = urllib.parse.parse_qs(
+            parsed_path.query
+        )
+
+        injury_filter = query_params.get(
+            "injury",
+            [""]
+        )[0]
+
+        ejected_filter = query_params.get(
+            "ejected",
+            [""]
+        )[0]
+
+        year_filter = query_params.get(
+            "year",
+            [""]
+        )[0]
+
+        conn = sqlite3.connect(
+            "database/Road_Accidents.db"
+        )
+
+        cur = conn.cursor()
+
+        cur.execute("""
+            SELECT
+                INJ_LEVEL,
+                INJ_LEVEL_DESC
+            FROM Injury
+            ORDER BY INJ_LEVEL_DESC
+        """)
+
+        injuries = cur.fetchall()
+
+        injury_options = ""
+
+        for code, desc in injuries:
+            injury_options += (
+                f'<option value="{code}">'
+                f'{desc}'
+                f'</option>'
+            )
+
+        sql = """
+            SELECT
+                i.INJ_LEVEL_DESC,
+                COUNT(*)
+            FROM Person p
+            JOIN Injury i
+                ON p.INJ_LEVEL = i.INJ_LEVEL
+            JOIN Accident a
+                ON p.ACCIDENT_NO = a.ACCIDENT_NO
+        """
+
+        conditions = []
+        values = []
+
+        if injury_filter:
+            conditions.append(
+                "p.INJ_LEVEL = ?"
+            )
+            values.append(injury_filter)
+
+        if ejected_filter:
+            conditions.append(
+                "p.EJECTED_CODE = ?"
+            )
+            values.append(ejected_filter)
+
+        if year_filter:
+            conditions.append(
+                "strftime('%Y', a.ACCIDENT_DATE) = ?"
+            )
+            values.append(year_filter)
+
+        if conditions:
+            sql += (
+                " WHERE " +
+                " AND ".join(conditions)
+            )
+
+        sql += """
+            GROUP BY i.INJ_LEVEL_DESC
+            ORDER BY COUNT(*) DESC
+        """
+
+        cur.execute(sql, values)
+
+        rows = cur.fetchall()
+
+        table_rows = ""
+
+        for injury, total in rows:
+            table_rows += f"""
+            <tr>
+                <td>{injury}</td>
+                <td>{int(total):,}</td>
+            </tr>
+            """
+
+        cur.execute("""
+            SELECT COUNT(*)
+            FROM Person
+            WHERE EJECTED_CODE != 0
+        """)
+
+        total_ejected = cur.fetchone()[0]
+
+        cur.execute("""
+            SELECT COUNT(*)
+            FROM Person
+            WHERE TAKEN_HOSPITAL = 'Y'
+        """)
+
+        total_hospital = cur.fetchone()[0]
+
+        cur.execute("""
+            SELECT COUNT(*)
+            FROM Person
+            WHERE INJ_LEVEL = 2
+        """)
+
+        total_serious = cur.fetchone()[0]
+
+        conn.close()
+
+        with open(
+            template_path,
+            "r",
+            encoding="utf-8"
+        ) as f:
+
+            html = f.read()
+
+        print(total_ejected)
+        print(total_hospital)
+        print(total_serious)
+
+        html = (
+            html
+            .replace(
+                "{{INJURY_OPTIONS}}",
+                injury_options
+            )
+            .replace(
+                "{{TABLE_ROWS}}",
+                table_rows
+            )
+            .replace(
+                "{{TOTAL_EJECTED}}",
+                f"{total_ejected:,}"
+            )
+            .replace(
+                "{{TOTAL_HOSPITAL}}",
+                f"{total_hospital:,}"
+            )
+            .replace(
+                "{{TOTAL_SERIOUS}}",
+                f"{total_serious:,}"
+            )
+        )
+
+        full_html = render_page(
+            title,
+            html
+        )
+
+        self.send_response(200)
+        self.send_header(
+            "Content-type",
+            "text/html; charset=utf-8"
+        )
+        self.end_headers()
+
+        self.wfile.write(
+            full_html.encode("utf-8")
+        )
 
     def handle_static(self, path):
         # e.g. /static/style.css

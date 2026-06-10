@@ -1,0 +1,114 @@
+<h1>People & Injuries Summary</h1>
+
+<p class="subtitle">
+    Summarised view of people involved — ejection, hospitalisation,
+    injury outcomes
+</p>
+
+<h2>FILTERS</h2>
+
+<p class="filter-help">
+Use these filters to explore injury outcomes, hospitalisations and ejection incidents across different years and conditions.
+</p>
+
+<form method="GET" action="/summary" class="filter-form">
+
+    <select name="injury">
+        <option value="">Injury Type</option>
+        {{INJURY_OPTIONS}}
+    </select>
+
+    <select name="ejected">
+        <option value="">Ejected?</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+    </select>
+
+    <input
+        type="number"
+        name="start_year"
+        placeholder="From Year"
+    >
+
+    <input
+        type="number"
+        name="end_year"
+        placeholder="To Year"
+        min="1980"
+        max="2030"
+    >
+
+    <button type="submit">Apply</button>
+
+</form>
+
+<div class="kpi-container">
+
+    <div class="kpi-card">
+        <h3>{{TOTAL_EJECTED}}</h3>
+        <p>People Ejected</p>
+    </div>
+
+    <div class="kpi-card">
+        <h3>{{TOTAL_HOSPITAL}}</h3>
+        <p>Taken to Hospital</p>
+    </div>
+
+    <div class="kpi-card">
+        <h3>{{TOTAL_SERIOUS}}</h3>
+        <p>Serious Injuries</p>
+    </div>
+
+</div>
+
+<h2>SUMMARY TABLE — PEOPLE & INJURY FACTORS</h2>
+
+<p class="table-note">
+    This table updates dynamically according to the selected filters.
+</p>
+
+<table>
+
+    <thead>
+        <tr>
+            <th>Injury Outcome</th>
+            <th>Total People</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{TABLE_ROWS}}
+    </tbody>
+
+</table>
+
+<h2>VISUAL INSIGHTS</h2>
+
+<div class="chart-row">
+
+    <div class="chart-box">
+        <h3>Hospitalised by Injury Type</h3>
+
+        <div class="bar">
+            <div class="bar-fill serious"></div>
+        </div>
+        <p>Serious Injury</p>
+
+        <div class="bar">
+            <div class="bar-fill other"></div>
+        </div>
+        <p>Other Injury</p>
+
+    </div>
+
+    <div class="chart-box">
+        <h3>Ejected vs Not Ejected</h3>
+
+        <div class="pie-placeholder">
+            22% Ejected<br>
+            78% Not Ejected
+        </div>
+
+    </div>
+
+</div>
