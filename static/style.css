@@ -460,3 +460,17 @@ button:hover {
 .conclusion-box h3 {
     margin-top: 0;
 }
+
+.dimension-buttons button {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dimension-buttons button:hover {
+    background: #4a7bd0;
+    color: white;
+}
