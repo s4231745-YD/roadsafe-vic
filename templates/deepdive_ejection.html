@@ -34,55 +34,47 @@
 <h2>SELECT DIMENSION</h2>
 
 <div class="dimension-buttons">
-    <button>Age Group</button>
-    <button>Ejection Status</button>
-    <button>Injury Severity</button>
-    <button>Combined</button>
+    <a href="/deepdive?dimension=age">
+        <button>Age Group</button>
+    </a>
+
+    <a href="/deepdive?dimension=ejection">
+        <button>Ejection Status</button>
+    </a>
+
+    <a href="/deepdive?dimension=severity">
+        <button>Injury Severity</button>
+    </a>
+
+    <a href="/deepdive?dimension=combined">
+        <button>Combined</button>
+    </a>
 </div>
 
-<h2>AGE GROUPS ABOVE AVERAGE INJURY COUNT</h2>
-
+<h2>EJECTION STATUS ANALYSIS</h2>
 <table>
+<thead>
+<tr>
+    <th>Status</th>
+    <th>Total People</th>
+    <th>Hospital %</th>
+</tr>
+</thead>
+<tbody>
 
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Age Group</th>
-            <th>Total Injured</th>
-            <th>vs Average</th>
-            <th>Ejected %</th>
-            <th>Hospital %</th>
-        </tr>
-    </thead>
-    <tbody>
+<tr>
+    <td>Ejected</td>
+    <td>83,635</td>
+    <td>72%</td>
+</tr>
 
-        <tr class="high-risk">
-            <td>1</td>
-            <td>18-25 yrs</td>
-            <td>9,840</td>
-            <td>+133%</td>
-            <td>28%</td>
-            <td>72%</td>
-        </tr>
+<tr>
+    <td>Not Ejected</td>
+    <td>299,000</td>
+    <td>48%</td>
+</tr>
 
-        <tr class="medium-risk">
-            <td>2</td>
-            <td>26-40 yrs</td>
-            <td>8,120</td>
-            <td>+93%</td>
-            <td>19%</td>
-            <td>65%</td>
-        </tr>
-
-        <tr class="low-risk">
-            <td>3</td>
-            <td>41-60 yrs</td>
-            <td>6,550</td>
-            <td>+56%</td>
-            <td>14%</td>
-            <td>61%</td>
-        </tr>
-    </tbody>
+</tbody>
 </table>
 
 <h2>INTERPRETATION</h2>

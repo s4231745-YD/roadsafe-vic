@@ -1,4 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from urllib.parse import urlparse, parse_qs
 import sqlite3
 import os
 import urllib.parse
@@ -24,22 +25,41 @@ class RequestHandler(BaseHTTPRequestHandler):
                 "Landing Page",
                 "templates/2_sample.html"
             )
+
         elif path == "/summary":
             self.handle_summary_page(
                 "People & Injuries Summary",
                 "templates/summary.html",
                 parsed_path
             )
+
         elif path == "/2X":
             self.handle_simple_page(
                 "2X Page",
                 "templates/2_X.html"
             )
+
         elif path == "/deepdive":
+            params = parse_qs(parsed_path.query)
+            dimension = params.get("dimension", ["age"])[0]
+
+            if dimension == "age":
+                template = "templates/deepdive_age.html"
+
+            elif dimension == "ejection":
+                template = "templates/deepdive_ejection.html"
+
+            elif dimension == "severity":
+                template = "templates/deepdive_severity.html"
+
+            else:
+                template = "templates/deepdive_combined.html"
+
             self.handle_simple_page(
                 "Deep Dive",
-                "templates/deepdive.html"
+                template
             )
+
         elif path.startswith("/static/"):
             self.handle_static(path)
         else:

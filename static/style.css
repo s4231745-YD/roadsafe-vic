@@ -474,3 +474,14 @@ button:hover {
     background: #4a7bd0;
     color: white;
 }
+
+.dimension-buttons a.active button {
+    background: #4e73df;
+    color: white;
+}
+
+.active-dimension button {
+    background-color: #2c3e50;
+    color: white;
+    border-color: #2c3e50;
+}
