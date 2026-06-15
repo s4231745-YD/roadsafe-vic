@@ -35,6 +35,11 @@ class RequestHandler(BaseHTTPRequestHandler):
                 "2X Page",
                 "templates/2_X.html"
             )
+        elif path == "/deepdive":
+            self.handle_simple_page(
+                "Deep Dive",
+                "templates/deepdive.html"
+            )
         elif path.startswith("/static/"):
             self.handle_static(path)
         else:
