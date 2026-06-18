@@ -23,7 +23,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         if path == "/":
             self.handle_simple_page(
                 "Landing Page",
-                "templates/2_sample.html"
+                "templates/2_X.html"
             )
 
         elif path == "/summary":
@@ -34,9 +34,10 @@ class RequestHandler(BaseHTTPRequestHandler):
             )
 
         elif path == "/2X":
-            self.handle_simple_page(
-                "2X Page",
-                "templates/2_X.html"
+            self.handle_2x_page(
+            "Road Conditions Summary",
+            "templates/2_X.html",
+            parsed_path
             )
 
         elif path == "/deepdive":
@@ -376,6 +377,183 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(
             full_html.encode("utf-8")
         )
+
+    def handle_2x_page(self, title, template_path, parsed_path):
+        
+        print("2X PAGE LOADED")
+
+        params = parse_qs(parsed_path.query)
+        condition_type = params.get("condition_type", [""])[0]
+        year_from = params.get("year_from", [""])[0]
+        year_to = params.get("year_to", [""])[0]
+        where_clauses = []
+
+        if year_from:
+            where_clauses.append(
+                f"SUBSTR(a.ACCIDENT_NO, 2, 4) >= '{year_from}'"
+            )
+
+        if year_to:
+            where_clauses.append(
+                f"SUBSTR(a.ACCIDENT_NO, 2, 4) <= '{year_to}'"
+            )
+
+        where_sql = ""
+
+        if where_clauses:
+            where_sql = "WHERE " + " AND ".join(where_clauses)
+        sort_by = params.get("sort_by", ["count_desc"])[0]
+        print("================================")
+        print("Condition =",condition_type)
+        print("Year from =",year_from)
+        print("Year to =",year_to)
+        print("Sort =",sort_by)
+        print("================================")
+
+        print("2X PAGE FUNCTION RUNNING")
+
+        conn = sqlite3.connect("database/Road_Accidents.db")
+        cur = conn.cursor()
+
+        where_clauses = []
+
+        if year_from:
+            where_clauses.append(f"a.ACCIDENT_NO >= 'T{year_from}000000'")
+
+        if year_to:
+            where_clauses.append(f"a.ACCIDENT_NO <= 'T{year_to}999999'")
+        
+        where_sql = ""
+
+        if where_clauses:
+            where_sql = "WHERE " + " AND ".join(where_clauses)
+
+        if condition_type == "road":
+
+            query = f"""
+            SELECT
+                r.SURFACE_COND_DESC,
+                COUNT(*)
+            FROM Surface_Cond_Seq s
+            JOIN Road_Surface_Cond r
+                ON s.SURFACE_COND = r.SURFACE_COND
+                {where_sql}
+            GROUP BY r.SURFACE_COND_DESC
+            ORDER BY COUNT(*) DESC
+            """
+
+        elif condition_type == "weather":
+
+            query = f"""
+            SELECT
+                ac.ATMOSPH_COND_DESC,
+                COUNT(*)
+            FROM Atmospheric_Cond_Seq s
+            JOIN Amospheric_Cond ac
+                ON s.ATMOSPH_COND = ac.ATMOSPH_COND
+                {where_sql}
+            GROUP BY ac.ATMOSPH_COND_DESC
+            ORDER BY COUNT(*) DESC
+            """
+
+        else:
+
+            query = f"""
+            SELECT
+                l.COND_NAME,
+                COUNT(*)
+            FROM Accident a
+            JOIN Light_Condition l
+                ON a.LIGHT_CONDITION = l.COND_ID
+                {where_sql}
+            GROUP BY l.COND_NAME
+            ORDER BY COUNT(*) DESC
+            """
+
+        print(where_sql)
+
+        cur.execute(query)
+
+        rows = cur.fetchall()
+
+        table_rows = ""
+        bar_chart_rows = ""
+        pie_legend_rows = ""
+
+        total = sum(count for _, count in rows)
+
+        position = 1
+
+        for condition, count in rows:
+
+            percentage = round((count / total) * 100, 1)
+
+            table_rows += f"""
+            <tr>
+                <td>{position}</td>
+                <td>{condition}</td>
+                <td>{count:,}</td>
+                <td>-</td>
+                <td>-</td>
+                <td>{percentage}%</td>
+            </tr>
+            """
+
+            bar_chart_rows += f"""
+            <div style="margin-bottom:10px;">
+                <strong>{condition}</strong>
+                ({count:,})
+            </div>
+            """
+
+            pie_legend_rows += f"""
+            <div>
+                {condition} - {percentage}%
+            </div>
+            """
+
+            position += 1
+
+        conn.close()
+
+        with open(template_path, "r", encoding="utf-8") as f:
+            html = f.read()
+
+        html = (
+            html
+            .replace("{{TABLE_ROWS}}", table_rows)
+            .replace("{{BAR_CHART_ROWS}}", bar_chart_rows)
+            .replace("{{PIE_LEGEND_ROWS}}", pie_legend_rows)
+            .replace("{{ACTIVE_FILTER_BADGES}}", "")
+            .replace("{{YEAR_FROM_OPTIONS}}", "")
+            .replace("{{YEAR_TO_OPTIONS}}", "")
+            .replace("{{RESULT_COUNT}}", f"{len(rows)} results")
+            .replace("{{ROAD_SELECTED}}", "")
+            .replace("{{WEATHER_SELECTED}}", "")
+            .replace("{{LIGHT_SELECTED}}", "")
+            .replace("{{SORT_COUNT_DESC}}", "selected")
+            .replace("{{SORT_COUNT_ASC}}", "")
+            .replace("{{SORT_FATAL_DESC}}", "")
+        )
+
+        print("TABLE_ROWS FOUND?", "{{TABLE_ROWS}}" in html)
+        print("BAR_ROWS FOUND?", "{{BAR_CHART_ROWS}}" in html)
+        print("FIRST 500 CHARS:")
+        with open("debug_output.html", "w", encoding="utf-8") as f:
+            f.write(html)
+
+        print("DEBUG FILE CREATED")
+
+        full_html = render_page(title, html)
+
+        self.send_response(200)
+        self.send_header(
+            "Content-type",
+            "text/html; charset=utf-8"
+        )
+        self.end_headers()
+
+        self.wfile.write(full_html.encode("utf-8"))
 
     def handle_static(self, path):
         # e.g. /static/style.css

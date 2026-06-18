@@ -174,31 +174,31 @@
                         <label for="condition_type">Condition Type</label>
                         <select name="condition_type" id="condition_type">
                             <option value="">All Conditions</option>
-                            <option value="road"    {{ROAD_SELECTED}}>Road Surface</option>
-                            <option value="weather" {{WEATHER_SELECTED}}>Atmospheric</option>
-                            <option value="light"   {{LIGHT_SELECTED}}>Light Condition</option>
+                            <option value="road"    >Road Surface</option>
+                            <option value="weather" >Atmospheric</option>
+                            <option value="light"   >Light Condition</option>
                         </select>
                     </div>
                     <div class="filter-group">
                         <label for="year_from">Year Range</label>
                         <select name="year_from" id="year_from">
                             <option value="">From...</option>
-                            {{YEAR_FROM_OPTIONS}}
+                            
                         </select>
                     </div>
                     <div class="filter-group">
                         <label for="year_to">&nbsp;</label>
                         <select name="year_to" id="year_to">
                             <option value="">To...</option>
-                            {{YEAR_TO_OPTIONS}}
+                            
                         </select>
                     </div>
                     <div class="filter-group">
                         <label for="sort_by">Sort By</label>
                         <select name="sort_by" id="sort_by">
-                            <option value="count_desc" {{SORT_COUNT_DESC}}>Crash Count (High → Low)</option>
-                            <option value="count_asc"  {{SORT_COUNT_ASC}}>Crash Count (Low → High)</option>
-                            <option value="fatal_desc" {{SORT_FATAL_DESC}}>Fatalities (High → Low)</option>
+                            <option value="count_desc" selected>Crash Count (High → Low)</option>
+                            <option value="count_asc"  >Crash Count (Low → High)</option>
+                            <option value="fatal_desc" >Fatalities (High → Low)</option>
                         </select>
                     </div>
                     <div class="filter-actions">
@@ -208,7 +208,7 @@
                 </div>
                 <!-- Active filter badges — H1 Nielsen: system status visible -->
                 <div class="active-filters">
-                    {{ACTIVE_FILTER_BADGES}}
+                    
                 </div>
             </form>
 
@@ -219,7 +219,42 @@
                         <span class="chart-note">Bar chart — aggregated from DB</span>
                     </h3>
                     <div class="bar-chart-container">
-                        {{BAR_CHART_ROWS}}
+                        
+            <div style="margin-bottom:10px;">
+                <strong>Day</strong>
+                (119,030)
+            </div>
+            
+            <div style="margin-bottom:10px;">
+                <strong>Dark street lights on</strong>
+                (27,023)
+            </div>
+            
+            <div style="margin-bottom:10px;">
+                <strong>Dusk/dawn</strong>
+                (15,168)
+            </div>
+            
+            <div style="margin-bottom:10px;">
+                <strong>Dark no street lights</strong>
+                (9,290)
+            </div>
+            
+            <div style="margin-bottom:10px;">
+                <strong>Unknown</strong>
+                (4,959)
+            </div>
+            
+            <div style="margin-bottom:10px;">
+                <strong>Dark street lights unknown</strong>
+                (2,010)
+            </div>
+            
+            <div style="margin-bottom:10px;">
+                <strong>Dark street lights off</strong>
+                (387)
+            </div>
+            
                     </div>
                 </div>
                 <div class="chart-panel">
@@ -227,7 +262,35 @@
                         <span class="chart-note">Share of total crashes</span>
                     </h3>
                     <div class="pie-legend">
-                        {{PIE_LEGEND_ROWS}}
+                        
+            <div>
+                Day - 66.9%
+            </div>
+            
+            <div>
+                Dark street lights on - 15.2%
+            </div>
+            
+            <div>
+                Dusk/dawn - 8.5%
+            </div>
+            
+            <div>
+                Dark no street lights - 5.2%
+            </div>
+            
+            <div>
+                Unknown - 2.8%
+            </div>
+            
+            <div>
+                Dark street lights unknown - 1.1%
+            </div>
+            
+            <div>
+                Dark street lights off - 0.2%
+            </div>
+            
                     </div>
                 </div>
             </div>
@@ -251,12 +314,75 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{TABLE_ROWS}}
+                            
+            <tr>
+                <td>1</td>
+                <td>Day</td>
+                <td>119,030</td>
+                <td>-</td>
+                <td>-</td>
+                <td>66.9%</td>
+            </tr>
+            
+            <tr>
+                <td>2</td>
+                <td>Dark street lights on</td>
+                <td>27,023</td>
+                <td>-</td>
+                <td>-</td>
+                <td>15.2%</td>
+            </tr>
+            
+            <tr>
+                <td>3</td>
+                <td>Dusk/dawn</td>
+                <td>15,168</td>
+                <td>-</td>
+                <td>-</td>
+                <td>8.5%</td>
+            </tr>
+            
+            <tr>
+                <td>4</td>
+                <td>Dark no street lights</td>
+                <td>9,290</td>
+                <td>-</td>
+                <td>-</td>
+                <td>5.2%</td>
+            </tr>
+            
+            <tr>
+                <td>5</td>
+                <td>Unknown</td>
+                <td>4,959</td>
+                <td>-</td>
+                <td>-</td>
+                <td>2.8%</td>
+            </tr>
+            
+            <tr>
+                <td>6</td>
+                <td>Dark street lights unknown</td>
+                <td>2,010</td>
+                <td>-</td>
+                <td>-</td>
+                <td>1.1%</td>
+            </tr>
+            
+            <tr>
+                <td>7</td>
+                <td>Dark street lights off</td>
+                <td>387</td>
+                <td>-</td>
+                <td>-</td>
+                <td>0.2%</td>
+            </tr>
+            
                         </tbody>
                     </table>
                 </div>
                 <div class="table-footer">
-                    <span>{{RESULT_COUNT}}</span>
+                    <span>7 results</span>
                     <span class="table-note-right">Source: Road_Accidents.db — ACCIDENT table joined with condition tables</span>
                 </div>
             </div>
