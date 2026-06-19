@@ -1,0 +1,747 @@
+<!-- CSS-ONLY TAB TOGGLE -->
+<div class="tab-wrapper">
+
+    <input type="radio" name="page_tab" id="tab-home" checked>
+    <input type="radio" name="page_tab" id="tab-conditions">
+
+    <div class="tab-nav">
+        <label for="tab-home" class="tab-label">🏠 Home</label>
+        <label for="tab-conditions" class="tab-label">🌦 Conditions</label>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         TAB 1 — LANDING PAGE
+         Persona: Both Jordan & Sarah
+    ══════════════════════════════════════ -->
+    <div class="tab-content" id="content-home">
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-content">
+                <p class="hero-eyebrow">Victorian Road Incident Analysis</p>
+                <h1 class="hero-title">Investigating Road Incidents in Victoria</h1>
+                <p class="hero-subtitle">Explore data to understand what causes road crashes — for researchers, analysts and everyday Victorian drivers.</p>
+                <a href="/2X" class="hero-btn">Explore Data →</a>
+            </div>
+            <div class="hero-image">
+                <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#0f1f3d"/>
+                            <stop offset="100%" stop-color="#1a3560"/>
+                        </linearGradient>
+                        <linearGradient id="roadG" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#2a2a2a"/>
+                            <stop offset="100%" stop-color="#111"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="500" height="280" fill="url(#skyG)"/>
+                    <ellipse cx="250" cy="340" rx="400" ry="200" fill="#1e3a1e" opacity="0.8"/>
+                    <polygon points="0,280 500,280 370,155 130,155" fill="url(#roadG)"/>
+                    <line x1="250" y1="280" x2="250" y2="175" stroke="white" stroke-width="3" stroke-dasharray="14,10" opacity="0.6"/>
+                    <polygon points="95,280 0,280 75,155 138,155" fill="#162816" opacity="0.95"/>
+                    <polygon points="405,280 500,280 425,155 362,155" fill="#162816" opacity="0.95"/>
+                    <circle cx="410" cy="75" r="38" fill="#ffd700" opacity="0.12"/>
+                    <circle cx="410" cy="75" r="22" fill="#ffd700" opacity="0.22"/>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Key Facts from DB — for Jordan (quick data overview) and Sarah (plain English numbers) -->
+        <section class="stats-section">
+            <p class="section-label">Key facts — retrieved from database</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon stat-blue">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Total Crashes / yr</span>
+                        <span class="stat-number">~45K</span>
+                        <span class="stat-source">From DB</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon stat-red">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Fatalities / yr</span>
+                        <span class="stat-number">~280</span>
+                        <span class="stat-source">From DB</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon stat-orange">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Serious Injuries</span>
+                        <span class="stat-number">~6.2K</span>
+                        <span class="stat-source">From DB</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon stat-green">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Crash Hotspots</span>
+                        <span class="stat-number">150+</span>
+                        <span class="stat-source">From DB</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Site pages table — Jordan needs to see what tools are available -->
+        <section class="pages-section">
+            <p class="section-label">Site pages — tasks | available | action</p>
+            <div class="pages-table-wrap">
+                <table class="pages-table">
+                    <thead>
+                        <tr>
+                            <th>Tasks (Pages)</th>
+                            <th>Available</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Road Conditions Summary</td>
+                            <td><span class="badge-yes">Yes</span></td>
+                            <td><a href="/2X" class="page-link">View →</a></td>
+                        </tr>
+                        <tr>
+                            <td>People &amp; Injuries View</td>
+                            <td><span class="badge-yes">Yes</span></td>
+                            <td><a href="/summary" class="page-link">View →</a></td>
+                        </tr>
+                        <tr>
+                            <td>Deep Dive Analysis</td>
+                            <td><span class="badge-yes">Yes</span></td>
+                            <td><a href="/deepdive" class="page-link">View →</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- CTA cards — Sarah navigates visually; Jordan wants direct links -->
+        <section class="cta-section">
+            <a href="/2X" class="cta-card">
+                <div class="cta-icon cta-blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19H9a7 7 0 110-14h8.5a4.5 4.5 0 010 9H9a2.5 2.5 0 010-5h7.5"/></svg>
+                </div>
+                <div class="cta-text">
+                    <h3>Road Conditions</h3>
+                    <p>Weather, surface &amp; lighting data</p>
+                </div>
+                <span class="cta-arrow">Learn More →</span>
+            </a>
+            <a href="/summary" class="cta-card">
+                <div class="cta-icon cta-purple">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <div class="cta-text">
+                    <h3>People &amp; Injuries</h3>
+                    <p>Who is at risk and injury types</p>
+                </div>
+                <span class="cta-arrow">Learn More →</span>
+            </a>
+        </section>
+
+    </div><!-- /tab-home -->
+
+
+    <!-- ══════════════════════════════════════
+         TAB 2 — CONDITIONS PAGE
+         Jordan: filters, ranked table, sort by severity
+         Sarah: bar chart + pie chart, plain language
+    ══════════════════════════════════════ -->
+    <div class="tab-content" id="content-conditions">
+        <div class="conditions-page">
+
+            <div class="page-header">
+                <h1>Road Conditions Summary</h1>
+                <p class="page-subtitle">Crash counts by road surface, atmospheric and light conditions.</p>
+            </div>
+
+            <!-- Filter bar — Jordan uses all filters; Sarah uses default view -->
+            <form method="GET" action="/2X" class="filter-form">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="condition_type">Condition Type</label>
+                        <select name="condition_type" id="condition_type">
+                            <option value="">All Conditions</option>
+                            <option value="road"    >Road Surface</option>
+                            <option value="weather" >Atmospheric</option>
+                            <option value="light"   >Light Condition</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="year_from">Year Range</label>
+                        <select name="year_from" id="year_from">
+                            <option value="">From...</option>
+                            
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="year_to">&nbsp;</label>
+                        <select name="year_to" id="year_to">
+                            <option value="">To...</option>
+                            
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sort_by">Sort By</label>
+                        <select name="sort_by" id="sort_by">
+                            <option value="count_desc" selected>Crash Count (High → Low)</option>
+                            <option value="count_asc"  >Crash Count (Low → High)</option>
+                            <option value="fatal_desc" >Fatalities (High → Low)</option>
+                        </select>
+                    </div>
+                    <div class="filter-actions">
+                        <button type="submit" class="btn-apply">Apply</button>
+                        <a href="/2X" class="btn-reset">Reset</a>
+                    </div>
+                </div>
+                <!-- Active filter badges — H1 Nielsen: system status visible -->
+                <div class="active-filters">
+                    
+                </div>
+            </form>
+
+            <!-- Charts — Sarah's visual summary -->
+            <div class="charts-row">
+                <div class="chart-panel">
+                    <h3>Crash Count by Condition
+                        <span class="chart-note">Bar chart — aggregated from DB</span>
+                    </h3>
+                    <div class="bar-chart-container">
+                        
+            <div style="margin-bottom:10px;">
+                <strong>Day</strong>
+                (119,030)
+            </div>
+            
+            <div style="margin-bottom:10px;">
+                <strong>Dark street lights on</strong>
+                (27,023)
+            </div>
+            
+            <div style="margin-bottom:10px;">
+                <strong>Dusk/dawn</strong>
+                (15,168)
+            </div>
+            
+            <div style="margin-bottom:10px;">
+                <strong>Dark no street lights</strong>
+                (9,290)
+            </div>
+            
+            <div style="margin-bottom:10px;">
+                <strong>Unknown</strong>
+                (4,959)
+            </div>
+            
+            <div style="margin-bottom:10px;">
+                <strong>Dark street lights unknown</strong>
+                (2,010)
+            </div>
+            
+            <div style="margin-bottom:10px;">
+                <strong>Dark street lights off</strong>
+                (387)
+            </div>
+            
+                    </div>
+                </div>
+                <div class="chart-panel">
+                    <h3>Distribution (%)
+                        <span class="chart-note">Share of total crashes</span>
+                    </h3>
+                    <div class="pie-legend">
+                        
+            <div>
+                Day - 66.9%
+            </div>
+            
+            <div>
+                Dark street lights on - 15.2%
+            </div>
+            
+            <div>
+                Dusk/dawn - 8.5%
+            </div>
+            
+            <div>
+                Dark no street lights - 5.2%
+            </div>
+            
+            <div>
+                Unknown - 2.8%
+            </div>
+            
+            <div>
+                Dark street lights unknown - 1.1%
+            </div>
+            
+            <div>
+                Dark street lights off - 0.2%
+            </div>
+            
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Table — Jordan's detailed view with crash counts, fatalities, serious injuries -->
+            <div class="table-section">
+                <h3>Summary Table
+                    <span class="chart-note">Joined &amp; grouped from DB</span>
+                </h3>
+                <p class="table-note">This table updates based on the selected filters. Null condition codes are shown as 'Unknown'.</p>
+                <div class="table-wrapper">
+                    <table class="conditions-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Condition</th>
+                                <th>Count</th>
+                                <th>Fatal</th>
+                                <th>Serious Injuries</th>
+                                <th>% of Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+            <tr>
+                <td>1</td>
+                <td>Day</td>
+                <td>119,030</td>
+                <td>-</td>
+                <td>-</td>
+                <td>66.9%</td>
+            </tr>
+            
+            <tr>
+                <td>2</td>
+                <td>Dark street lights on</td>
+                <td>27,023</td>
+                <td>-</td>
+                <td>-</td>
+                <td>15.2%</td>
+            </tr>
+            
+            <tr>
+                <td>3</td>
+                <td>Dusk/dawn</td>
+                <td>15,168</td>
+                <td>-</td>
+                <td>-</td>
+                <td>8.5%</td>
+            </tr>
+            
+            <tr>
+                <td>4</td>
+                <td>Dark no street lights</td>
+                <td>9,290</td>
+                <td>-</td>
+                <td>-</td>
+                <td>5.2%</td>
+            </tr>
+            
+            <tr>
+                <td>5</td>
+                <td>Unknown</td>
+                <td>4,959</td>
+                <td>-</td>
+                <td>-</td>
+                <td>2.8%</td>
+            </tr>
+            
+            <tr>
+                <td>6</td>
+                <td>Dark street lights unknown</td>
+                <td>2,010</td>
+                <td>-</td>
+                <td>-</td>
+                <td>1.1%</td>
+            </tr>
+            
+            <tr>
+                <td>7</td>
+                <td>Dark street lights off</td>
+                <td>387</td>
+                <td>-</td>
+                <td>-</td>
+                <td>0.2%</td>
+            </tr>
+            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-footer">
+                    <span>7 results</span>
+                    <span class="table-note-right">Source: Road_Accidents.db — ACCIDENT table joined with condition tables</span>
+                </div>
+            </div>
+
+        </div>
+    </div><!-- /tab-conditions -->
+
+</div><!-- /tab-wrapper -->
+
+
+<style>
+/* ══ Hide radio inputs ══ */
+#tab-home, #tab-conditions { display: none; }
+
+/* ══ Tab nav ══ */
+.tab-wrapper { font-family: 'Segoe UI', Arial, sans-serif; background: #f8f9fb; }
+
+.tab-nav {
+    display: flex;
+    background: #1a1a2e;
+    padding: 0 2.5rem;
+    gap: 0.2rem;
+    border-bottom: 2px solid #0d0d1a;
+}
+.tab-label {
+    padding: 0.9rem 1.6rem;
+    color: #8899bb;
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.15s, border-color 0.15s;
+    user-select: none;
+}
+.tab-label:hover { color: #c8d8f0; }
+
+#tab-home:checked       ~ .tab-nav label[for="tab-home"]       { color: white; border-bottom-color: #1d6fcf; }
+#tab-conditions:checked ~ .tab-nav label[for="tab-conditions"] { color: white; border-bottom-color: #1d6fcf; }
+
+/* ══ Tab content toggle ══ */
+.tab-content { display: none; }
+#tab-home:checked       ~ #content-home       { display: block; }
+#tab-conditions:checked ~ #content-conditions { display: block; }
+
+/* ══ HERO ══ */
+.hero {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    background: linear-gradient(135deg, #0f1f3d 0%, #1a3560 65%, #0d2847 100%);
+    padding: 3.5rem 3rem;
+    min-height: 300px;
+}
+.hero-content { flex: 1; color: white; }
+.hero-eyebrow {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6fa3d8;
+    margin: 0 0 0.6rem;
+    font-weight: 600;
+}
+.hero-title {
+    font-size: 2.3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+    color: white;
+}
+.hero-subtitle {
+    font-size: 1rem;
+    color: #b0c8e4;
+    margin: 0 0 2rem;
+    max-width: 500px;
+    line-height: 1.65;
+}
+.hero-btn {
+    display: inline-block;
+    background: #1d6fcf;
+    color: white;
+    padding: 0.75rem 1.8rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.97rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.hero-btn:hover { background: #155bab; }
+.hero-image {
+    flex: 0 0 340px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+}
+.hero-image svg { display: block; width: 100%; height: auto; }
+
+/* ══ Section label ══ */
+.section-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #888;
+    font-weight: 600;
+    margin: 0 0 0.9rem;
+}
+
+/* ══ Stats ══ */
+.stats-section { padding: 2rem 3rem 1rem; background: #f8f9fb; }
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.1rem;
+}
+.stat-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.3rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border: 1px solid #eaedf2;
+}
+.stat-icon {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.stat-icon svg { width: 20px; height: 20px; }
+.stat-blue   { background: #e8f0fe; color: #1d6fcf; }
+.stat-red    { background: #fdecea; color: #d93025; }
+.stat-orange { background: #fef3e2; color: #e37400; }
+.stat-green  { background: #e6f4ea; color: #1e7e34; }
+.stat-info { display: flex; flex-direction: column; }
+.stat-label  { font-size: 0.74rem; color: #666; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+.stat-number { font-size: 1.65rem; font-weight: 700; color: #1a1a2e; line-height: 1.1; }
+.stat-source { font-size: 0.7rem; color: #1d6fcf; margin-top: 2px; }
+
+/* ══ Pages table ══ */
+.pages-section { padding: 1.5rem 3rem; background: #f8f9fb; }
+.pages-table-wrap { background: white; border-radius: 10px; overflow: hidden; border: 1px solid #eaedf2; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.pages-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.pages-table thead tr { background: #1a1a2e; color: white; }
+.pages-table th { padding: 0.65rem 1.1rem; text-align: left; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+.pages-table td { padding: 0.7rem 1.1rem; color: #333; border-bottom: 1px solid #f0f2f5; }
+.pages-table tbody tr:last-child td { border-bottom: none; }
+.pages-table tbody tr:nth-child(even) { background: #f8f9fb; }
+.badge-yes { background: #e6f4ea; color: #1e7e34; font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 20px; }
+.badge-no  { background: #f0f2f5; color: #888; font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 20px; }
+.page-link { color: #1d6fcf; font-weight: 600; cursor: pointer; font-size: 0.85rem; text-decoration: none; }
+.page-link:hover { text-decoration: underline; }
+.page-link-disabled { color: #bbb; font-size: 0.85rem; }
+
+/* ══ CTA cards ══ */
+.cta-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.1rem;
+    padding: 1rem 3rem 2.5rem;
+    background: #f8f9fb;
+}
+.cta-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.4rem 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border: 1px solid #eaedf2;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.cta-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.11); transform: translateY(-2px); }
+.cta-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.cta-icon svg { width: 20px; height: 20px; }
+.cta-blue   { background: #e8f0fe; color: #1d6fcf; }
+.cta-purple { background: #f0e8fe; color: #7b2ff7; }
+.cta-text { flex: 1; }
+.cta-text h3 { margin: 0 0 0.25rem; font-size: 0.95rem; font-weight: 600; color: #1a1a2e; }
+.cta-text p  { margin: 0; font-size: 0.8rem; color: #666; }
+.cta-arrow { font-size: 0.8rem; color: #1d6fcf; font-weight: 600; white-space: nowrap; }
+
+/* ══ CONDITIONS PAGE ══ */
+.conditions-page { padding: 2rem 3rem; background: #f8f9fb; min-height: calc(100vh - 100px); }
+.page-header { margin-bottom: 1.4rem; }
+.page-header h1 { font-size: 1.65rem; font-weight: 700; color: #1a1a2e; margin: 0 0 0.35rem; }
+.page-subtitle { color: #666; font-size: 0.93rem; margin: 0; }
+
+/* Filter form */
+.filter-form {
+    background: white;
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border: 1px solid #eaedf2;
+    margin-bottom: 1.4rem;
+}
+.filter-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+}
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;
+    min-width: 120px;
+}
+.filter-group label {
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.filter-group select {
+    padding: 0.52rem 0.7rem;
+    border: 1px solid #d0d5dd;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    color: #333;
+    background: white;
+    cursor: pointer;
+}
+.filter-group select:focus {
+    outline: none;
+    border-color: #1d6fcf;
+    box-shadow: 0 0 0 3px rgba(29,111,207,0.1);
+}
+.filter-actions { display: flex; gap: 0.5rem; align-items: flex-end; }
+.btn-apply {
+    background: #1d6fcf;
+    color: white;
+    border: none;
+    padding: 0.58rem 1.3rem;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-apply:hover { background: #155bab; }
+.btn-reset {
+    background: white;
+    color: #555;
+    border: 1px solid #d0d5dd;
+    padding: 0.56rem 1rem;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+.btn-reset:hover { background: #f0f0f0; }
+.active-filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.85rem; }
+.filter-badge {
+    background: #e8f0fe;
+    color: #1d6fcf;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.22rem 0.7rem;
+    border-radius: 20px;
+    border: 1px solid #c2d4f5;
+}
+
+/* Charts */
+.charts-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 1.4rem;
+}
+.chart-panel {
+    background: white;
+    border-radius: 10px;
+    padding: 1.3rem 1.4rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border: 1px solid #eaedf2;
+}
+.chart-panel h3 {
+    margin: 0 0 1.1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.chart-note {
+    font-size: 0.72rem;
+    color: #999;
+    font-weight: 400;
+}
+
+/* Bar chart */
+.bar-chart-container { display: flex; flex-direction: column; gap: 0.75rem; }
+.bar-row { display: flex; align-items: center; gap: 0.75rem; }
+.bar-label { width: 85px; font-size: 0.8rem; color: #444; text-align: right; flex-shrink: 0; }
+.bar-track { flex: 1; background: #f0f2f5; border-radius: 4px; height: 20px; overflow: hidden; }
+.bar-fill-cond { height: 100%; border-radius: 4px; }
+.bar-count { font-size: 0.78rem; color: #555; width: 52px; text-align: right; flex-shrink: 0; }
+
+/* Pie legend */
+.pie-legend { display: flex; flex-direction: column; gap: 0.65rem; margin-top: 0.3rem; }
+.pie-legend-item { display: flex; align-items: center; gap: 0.65rem; }
+.pie-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.pie-legend-label { font-size: 0.81rem; color: #444; flex: 1; }
+.pie-legend-pct { font-size: 0.81rem; font-weight: 600; color: #1a1a2e; }
+
+/* Table */
+.table-section {
+    background: white;
+    border-radius: 10px;
+    padding: 1.3rem 1.4rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border: 1px solid #eaedf2;
+}
+.table-section h3 {
+    margin: 0 0 0.25rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.table-note  { font-size: 0.78rem; color: #888; margin: 0 0 0.9rem; }
+.table-wrapper { overflow-x: auto; }
+.conditions-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+.conditions-table thead tr { background: #1a1a2e; color: white; }
+.conditions-table th {
+    padding: 0.7rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.conditions-table td { padding: 0.65rem 1rem; color: #333; border-bottom: 1px solid #18202c; }
+.conditions-table tbody tr:hover { background: #89a6dc; }
+.table-footer {
+    margin-top: 0.9rem;
+    font-size: 0.78rem;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.table-note-right { color: #aaa; font-style: italic; }
+</style>
