@@ -24,20 +24,6 @@ Use these filters to explore injury outcomes, hospitalisations and ejection inci
         <option value="0">No</option>
     </select>
 
-    <input
-        type="number"
-        name="start_year"
-        placeholder="From Year"
-    >
-
-    <input
-        type="number"
-        name="end_year"
-        placeholder="To Year"
-        min="1980"
-        max="2030"
-    >
-
     <button type="submit">Apply</button>
 
 </form>
@@ -84,30 +70,62 @@ Use these filters to explore injury outcomes, hospitalisations and ejection inci
 
 <h2>VISUAL INSIGHTS</h2>
 
-<div class="chart-row">
+<div class="chart-box">
 
-    <div class="chart-box">
-        <h3>Hospitalised by Injury Type</h3>
+    <h3>Hospitalised by Injury Type</h3>
 
-        <div class="bar">
-            <div class="bar-fill serious"></div>
-        </div>
-        <p>Serious Injury</p>
-
-        <div class="bar">
-            <div class="bar-fill other"></div>
-        </div>
-        <p>Other Injury</p>
-
+    <div class="bar-label-row">
+        <span>Serious Injury</span>
+        <strong>81%</strong>
     </div>
+
+    <div class="bar">
+        <div class="bar-fill serious"></div>
+    </div>
+
+    <div class="bar-label-row">
+        <span>Other Injury</span>
+        <strong>62%</strong>
+    </div>
+
+    <div class="bar">
+        <div class="bar-fill other"></div>
+    </div>
+
+    <p class="chart-explanation">
+        Serious injuries are substantially more likely to result
+        in hospitalisation compared with other injury types.
+    </p>
+</div>
 
     <div class="chart-box">
         <h3>Ejected vs Not Ejected</h3>
 
-        <div class="pie-placeholder">
-            22% Ejected<br>
-            78% Not Ejected
+        <div class="donut-container">
+
+            <div class="donut">
+                <span>22%</span>
+            </div>
+
+            <div class="donut-info">
+
+                <div class="legend-item">
+                    <span class="legend-dot ejected"></span>
+                    <strong>22%</strong> Ejected
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-dot safe"></span>
+                    <strong>78%</strong> Not Ejected
+                </div>
+
+            </div>
+
         </div>
+            <p class="chart-explanation">
+                Only 22% of occupants were ejected from vehicles, while 78% remained inside.
+                Ejection is less common but is associated with significantly higher injury severity.
+            </p>
 
     </div>
 

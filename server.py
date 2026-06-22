@@ -21,10 +21,10 @@ class RequestHandler(BaseHTTPRequestHandler):
         path = parsed_path.path
 
         if path == "/":
-            self.handle_simple_page(
-                "Landing Page",
-                "templates/2_X.html"
-            )
+            self.send_response(302)
+            self.send_header("Location", "/2X")
+            self.end_headers()
+            return
 
         elif path == "/summary":
             self.handle_summary_page(
@@ -268,12 +268,6 @@ class RequestHandler(BaseHTTPRequestHandler):
                 "p.EJECTED_CODE = ?"
             )
             values.append(ejected_filter)
-
-        if year_filter:
-            conditions.append(
-                "strftime('%Y', a.ACCIDENT_DATE) = ?"
-            )
-            values.append(year_filter)
 
         if conditions:
             sql += (
